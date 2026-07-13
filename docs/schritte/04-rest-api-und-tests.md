@@ -1,10 +1,10 @@
-# Smart Task Manager erweitern
+# REST-API und Tests
 
 ## Ziel
 
-Das vorhandene Pet-Projekt Smart Task Manager schrittweise erweitern.
+Die REST-API und ihre Tests für den Smart Task Manager dokumentieren.
 
-[Passende Prompt-Datei](../prompts/03-pet-projekt.md)
+[Passende Prompt-Datei](../prompts/04-rest-api-und-tests.md)
 
 ## Screenshots
 

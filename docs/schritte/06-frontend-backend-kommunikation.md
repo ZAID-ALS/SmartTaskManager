@@ -1,10 +1,10 @@
-# Frontend mit Next.js
+# Kommunikation zwischen Frontend und Backend
 
 ## Ziel
 
-Das Frontend des Smart Task Managers mit Next.js umsetzen.
+Die Kommunikation zwischen Frontend und Java-Backend dokumentieren.
 
-[Passende Prompt-Datei](../prompts/02-nextjs-frontend.md)
+[Passende Prompt-Datei](../prompts/06-frontend-backend-kommunikation.md)
 
 ## Screenshots
 

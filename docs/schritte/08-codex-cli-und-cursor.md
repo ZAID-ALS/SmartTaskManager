@@ -1,10 +1,10 @@
-# Java-Backend-API
+# Codex CLI und Cursor
 
 ## Ziel
 
-Eine Java-Backend-API für den Smart Task Manager konzipieren.
+Den Einsatz von Codex CLI und Cursor im Projekt dokumentieren.
 
-[Passende Prompt-Datei](../prompts/04-java-backend-api.md)
+[Passende Prompt-Datei](../prompts/08-codex-cli-und-cursor.md)
 
 ## Screenshots
 

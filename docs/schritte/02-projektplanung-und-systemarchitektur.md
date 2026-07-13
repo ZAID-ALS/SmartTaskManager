@@ -1,10 +1,10 @@
-# Kommunikation zwischen Frontend und Backend
+# Smart Task Manager erweitern
 
 ## Ziel
 
-Die Kommunikation zwischen Frontend und Java-Backend dokumentieren.
+Das vorhandene Pet-Projekt Smart Task Manager schrittweise erweitern.
 
-[Passende Prompt-Datei](../prompts/05-verteilte-anwendung.md)
+[Passende Prompt-Datei](../prompts/02-projektplanung-und-systemarchitektur.md)
 
 ## Screenshots
 

@@ -1,10 +1,10 @@
-# Codex CLI und Cursor
+# Frontend mit Next.js
 
 ## Ziel
 
-Den Einsatz von Codex CLI und Cursor im Projekt dokumentieren.
+Das Frontend des Smart Task Managers mit Next.js umsetzen.
 
-[Passende Prompt-Datei](../prompts/06-codex-cli-und-cursor.md)
+[Passende Prompt-Datei](../prompts/05-nextjs-frontend.md)
 
 ## Screenshots
 
