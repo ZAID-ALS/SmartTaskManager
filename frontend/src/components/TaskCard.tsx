@@ -1,11 +1,22 @@
-import type { TaskItem } from "./TaskList";
+import type { Task } from "@/types/task";
 
 type TaskCardProps = {
-  task: TaskItem;
+  task: Task;
+  isUpdating: boolean;
+  onComplete: (id: number) => Promise<void>;
+  onDelete: (id: number) => Promise<void>;
 };
 
-export default function TaskCard({ task }: TaskCardProps) {
+export default function TaskCard({
+  task,
+  isUpdating,
+  onComplete,
+  onDelete,
+}: TaskCardProps) {
   const isCompleted = task.status === "COMPLETED";
+  const formattedDueDate = new Intl.DateTimeFormat("de-DE").format(
+    new Date(`${task.dueDate}T00:00:00`),
+  );
 
   return (
     <article className={`task-card${isCompleted ? " completed" : ""}`}>
@@ -23,16 +34,26 @@ export default function TaskCard({ task }: TaskCardProps) {
         <p className="task-description">{task.description}</p>
         <p className="due-date">
           <span aria-hidden="true">□</span>
-          Fällig am {task.dueDate}
+          Fällig am {formattedDueDate}
         </p>
       </div>
 
       <div className="task-actions">
-        <button className="complete-button" type="button">
+        <button
+          className="complete-button"
+          type="button"
+          onClick={() => void onComplete(task.id)}
+          disabled={isCompleted || isUpdating}
+        >
           <span aria-hidden="true">✓</span>
-          Erledigt
+          {isCompleted ? "Erledigt" : "Als erledigt markieren"}
         </button>
-        <button className="delete-button" type="button">
+        <button
+          className="delete-button"
+          type="button"
+          onClick={() => void onDelete(task.id)}
+          disabled={isUpdating}
+        >
           Löschen
         </button>
       </div>

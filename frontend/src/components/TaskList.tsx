@@ -1,44 +1,72 @@
 import TaskCard from "./TaskCard";
-
-export type TaskPriority = "HIGH" | "MEDIUM" | "LOW";
-export type TaskStatus = "NEW" | "COMPLETED";
-
-export type TaskItem = {
-  id: number;
-  title: string;
-  description: string;
-  priority: TaskPriority;
-  status: TaskStatus;
-  dueDate: string;
-};
+import type { Task, TaskSort } from "@/types/task";
 
 type TaskListProps = {
-  tasks: TaskItem[];
+  tasks: Task[];
+  activeSort?: TaskSort;
+  isLoading: boolean;
+  error?: string;
+  activeTaskId?: number;
+  onSort: (sort: TaskSort) => Promise<void>;
+  onComplete: (id: number) => Promise<void>;
+  onDelete: (id: number) => Promise<void>;
 };
 
-export default function TaskList({ tasks }: TaskListProps) {
+export default function TaskList({
+  tasks,
+  activeSort,
+  isLoading,
+  error,
+  activeTaskId,
+  onSort,
+  onComplete,
+  onDelete,
+}: TaskListProps) {
   return (
     <section className="task-section" aria-labelledby="task-list-title">
       <div className="list-header">
         <div className="section-heading">
           <p className="section-kicker">Aufgabenliste</p>
           <h2 id="task-list-title">Deine Aufgaben</h2>
-          <p>{tasks.length} statische Beispielaufgaben für die Designprüfung</p>
+          <p>{tasks.length} {tasks.length === 1 ? "Aufgabe" : "Aufgaben"}</p>
         </div>
 
         <div className="sort-actions" aria-label="Aufgaben sortieren">
-          <button className="sort-button active" type="button">
+          <button
+            className={`sort-button${activeSort === "priority" ? " active" : ""}`}
+            type="button"
+            onClick={() => void onSort("priority")}
+            disabled={isLoading}
+          >
             Priorität
           </button>
-          <button className="sort-button" type="button">
+          <button
+            className={`sort-button${activeSort === "dueDate" ? " active" : ""}`}
+            type="button"
+            onClick={() => void onSort("dueDate")}
+            disabled={isLoading}
+          >
             Fälligkeitsdatum
           </button>
         </div>
       </div>
 
       <div className="task-list">
-        {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
+        {isLoading && <p className="list-state">Aufgaben werden geladen …</p>}
+        {!isLoading && error && (
+          <p className="list-state error" role="alert">{error}</p>
+        )}
+        {!isLoading && !error && tasks.length === 0 && (
+          <p className="list-state">Noch keine Aufgaben vorhanden.</p>
+        )}
+        {!isLoading && tasks.map((task) => (
+          <TaskCard
+            key={task.id}
+            task={task}
+            isUpdating={activeTaskId === task.id}
+            onComplete={onComplete}
+            onDelete={onDelete}
+          />
         ))}
       </div>
     </section>

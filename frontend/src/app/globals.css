@@ -52,6 +52,11 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
 .app-shell {
   min-height: 100vh;
 }
@@ -327,6 +332,26 @@ textarea:focus-visible {
   margin-top: 4px;
 }
 
+.form-message,
+.list-state {
+  margin: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.form-message.success {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.form-message.error,
+.list-state.error {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
 .task-section {
   min-width: 0;
 }
@@ -367,6 +392,13 @@ textarea:focus-visible {
 .task-list {
   display: grid;
   gap: 16px;
+}
+
+.list-state {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-soft);
+  box-shadow: var(--shadow);
 }
 
 .task-card {
