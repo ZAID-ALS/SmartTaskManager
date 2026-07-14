@@ -52,7 +52,7 @@ export default function TaskList({
       </div>
 
       <div className="task-list">
-        {isLoading && <p className="list-state">Aufgaben werden geladen …</p>}
+        {isLoading && <p className="list-state" role="status">Aufgaben werden geladen …</p>}
         {!isLoading && error && (
           <p className="list-state error" role="alert">{error}</p>
         )}
