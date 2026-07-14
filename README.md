@@ -64,12 +64,10 @@ Smart Task Manager/
 │   ├── prompts/         verwendete Prompts
 │   ├── schritte/        Entwicklungsdokumentation
 │   └── screenshots/     Nachweise
-├── src/                 frühere Java-Konsolenversion
-├── pom.xml              Maven-Datei der früheren Konsolenversion
 └── README.md
 ```
 
-Die aktuelle verteilte Anwendung befindet sich in `backend/` und `frontend/`. Der Ordner `src/` und die Maven-Datei `pom.xml` im Projektstamm gehören zur früheren Konsolenversion und sind nicht das aktuelle Spring-Boot-Backend.
+Die aktuelle Anwendung befindet sich vollständig in den getrennten Modulen `backend/` und `frontend/`.
 
 ## Voraussetzungen
 
