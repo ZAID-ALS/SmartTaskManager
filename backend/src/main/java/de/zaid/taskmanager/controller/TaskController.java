@@ -21,14 +21,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/tasks")
+// Nimmt HTTP-Anfragen vom Frontend entgegen und gibt Antworten zurück.
 public class TaskController {
     private final TaskManager taskManager;
 
+    // Spring übergibt dem Controller hier den TaskManager.
     public TaskController(TaskManager taskManager) {
         this.taskManager = taskManager;
     }
 
     @PostMapping
+    // Erstellt eine neue Aufgabe und antwortet mit 201 Created.
     public ResponseEntity<TaskResponse> createTask(@Valid @RequestBody CreateTaskRequest request) {
         Task task = taskManager.createTask(
                 request.getTitle(),
@@ -42,6 +45,7 @@ public class TaskController {
     }
 
     @GetMapping
+    // Gibt Aufgaben normal oder sortiert an das Frontend zurück.
     public ResponseEntity<List<TaskResponse>> getTasks(
             @RequestParam(required = false) String sort) {
         List<Task> tasks;
@@ -64,6 +68,7 @@ public class TaskController {
     }
 
     @PatchMapping("/{id}/complete")
+    // Markiert eine Aufgabe als erledigt.
     public ResponseEntity<TaskResponse> completeTask(@PathVariable int id) {
         if (!taskManager.markTaskAsCompleted(id)) {
             throw new TaskNotFoundException(id);
@@ -74,6 +79,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
+    // Löscht eine Aufgabe über ihren Status.
     public ResponseEntity<Void> deleteTask(@PathVariable int id) {
         if (!taskManager.deleteTask(id)) {
             throw new TaskNotFoundException(id);
@@ -82,6 +88,7 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
 
+    // Wandelt das interne Task-Objekt in eine API-Antwort um.
     private TaskResponse toResponse(Task task) {
         return new TaskResponse(
                 task.getId(),

@@ -12,13 +12,16 @@ import {
 } from "@/lib/taskApi";
 import type { CreateTaskInput, Task, TaskSort } from "@/types/task";
 
+// Verwaltet den Zustand und setzt die Hauptseite zusammen.
 export default function Home() {
+  // Speichert die Aufgaben und die Zustände für Laden, Fehler und Aktionen.
   const [tasks, setTasks] = useState<Task[]>([]);
   const [activeSort, setActiveSort] = useState<TaskSort>();
   const [isLoading, setIsLoading] = useState(true);
   const [listError, setListError] = useState<string>();
   const [activeTaskId, setActiveTaskId] = useState<number>();
 
+  // Lädt Aufgaben vom Backend und kann sie dort sortieren lassen.
   const loadTasks = useCallback(async (sort?: TaskSort) => {
     setIsLoading(true);
     setListError(undefined);
@@ -36,6 +39,7 @@ export default function Home() {
     }
   }, []);
 
+  // Beim ersten Anzeigen der Seite werden die Aufgaben einmal vom Backend geladen.
   useEffect(() => {
     let isCurrent = true;
 
@@ -63,6 +67,7 @@ export default function Home() {
     };
   }, []);
 
+  // Erstellt eine Aufgabe und aktualisiert danach die sichtbare Liste.
   async function handleCreate(input: CreateTaskInput) {
     const newTask = await createTask(input);
 
@@ -73,6 +78,7 @@ export default function Home() {
     }
   }
 
+  // Markiert die ausgewählte Aufgabe über das Backend als erledigt.
   async function handleComplete(id: number) {
     setActiveTaskId(id);
     setListError(undefined);
@@ -89,6 +95,7 @@ export default function Home() {
     }
   }
 
+  // Löscht die ausgewählte Aufgabe und entfernt sie aus der Anzeige.
   async function handleDelete(id: number) {
     setActiveTaskId(id);
     setListError(undefined);

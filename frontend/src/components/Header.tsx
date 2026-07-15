@@ -1,3 +1,4 @@
+// Zeigt den Kopfbereich und den Sprung zum Aufgabenformular.
 export default function Header() {
   return (
     <header className="topbar">

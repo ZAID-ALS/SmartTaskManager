@@ -10,10 +10,12 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
+// Enthält die Aufgabenlogik und speichert Aufgaben im Arbeitsspeicher.
 public class TaskManager {
     private final ArrayList<Task> tasks = new ArrayList<>();
     private int nextId = 1;
 
+    // Erstellt und speichert eine Aufgabe mit der nächsten freien ID.
     public Task createTask(String title, String description, Priority priority, LocalDate dueDate) {
         Task task = new Task(nextId, title, description, priority, dueDate);
         tasks.add(task);
@@ -21,6 +23,7 @@ public class TaskManager {
         return task;
     }
 
+    // Gibt alle Aufgaben zurück, die nicht soft gelöscht wurden.
     public List<Task> getAllTasks() {
         ArrayList<Task> activeTasks = new ArrayList<>();
 
@@ -33,6 +36,7 @@ public class TaskManager {
         return activeTasks;
     }
 
+    // Sucht eine aktive Aufgabe anhand ihrer ID.
     public Task findTaskById(int id) {
         for (Task task : tasks) {
             if (task.getId() == id && task.getStatus() != TaskStatus.DELETED) {
@@ -43,6 +47,7 @@ public class TaskManager {
         return null;
     }
 
+    // Setzt den Status auf DELETED, statt die Aufgabe zu entfernen.
     public boolean deleteTask(int id) {
         Task task = findTaskById(id);
         if (task == null) {
@@ -53,6 +58,7 @@ public class TaskManager {
         return true;
     }
 
+    // Setzt den Status einer Aufgabe auf COMPLETED.
     public boolean markTaskAsCompleted(int id) {
         Task task = findTaskById(id);
         if (task == null) {
@@ -63,12 +69,14 @@ public class TaskManager {
         return true;
     }
 
+    // Sortiert eine neue Liste nach der Priorität.
     public List<Task> getTasksSortedByPriority() {
         ArrayList<Task> sortedTasks = new ArrayList<>(getAllTasks());
         sortedTasks.sort(Comparator.comparing(Task::getPriority));
         return sortedTasks;
     }
 
+    // Sortiert eine neue Liste nach dem frühesten Fälligkeitsdatum.
     public List<Task> getTasksSortedByDueDate() {
         ArrayList<Task> sortedTasks = new ArrayList<>(getAllTasks());
         sortedTasks.sort(Comparator.comparing(Task::getDueDate));

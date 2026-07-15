@@ -2,6 +2,7 @@ package de.zaid.taskmanager.model;
 
 import java.time.LocalDate;
 
+// Enthält die Daten einer einzelnen Aufgabe.
 public class Task {
     private final int id;
     private final String title;
@@ -10,6 +11,7 @@ public class Task {
     private TaskStatus status;
     private final LocalDate dueDate;
 
+    // Erstellt eine neue Aufgabe zuerst mit dem Status NEW.
     public Task(int id, String title, String description, Priority priority, LocalDate dueDate) {
         this.id = id;
         this.title = title;
@@ -43,6 +45,7 @@ public class Task {
         return dueDate;
     }
 
+    // Ändert den Status einer Aufgabe.
     public void setStatus(TaskStatus status) {
         this.status = status;
     }

@@ -12,6 +12,7 @@ type TaskListProps = {
   onDelete: (id: number) => Promise<void>;
 };
 
+// Zeigt Aufgaben, Sortierung sowie Lade- und Fehlerzustände.
 export default function TaskList({
   tasks,
   activeSort,
@@ -52,6 +53,7 @@ export default function TaskList({
       </div>
 
       <div className="task-list">
+        {/* Je nach aktuellem Zustand wird ein Hinweis oder die Aufgabenliste gezeigt. */}
         {isLoading && <p className="list-state" role="status">Aufgaben werden geladen …</p>}
         {!isLoading && error && (
           <p className="list-state error" role="alert">{error}</p>

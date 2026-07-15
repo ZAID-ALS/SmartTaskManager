@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+// Nimmt die Daten für eine neue Aufgabe aus dem JSON-Request auf.
 public class CreateTaskRequest {
     @NotBlank(message = "Title must not be empty")
     private String title;
@@ -17,6 +18,7 @@ public class CreateTaskRequest {
     @NotNull(message = "Due date is required")
     private LocalDate dueDate;
 
+    // Der leere Konstruktor wird beim Einlesen des JSON-Bodys benötigt.
     public CreateTaskRequest() {
     }
 

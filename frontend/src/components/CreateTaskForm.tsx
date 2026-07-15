@@ -9,6 +9,7 @@ type CreateTaskFormProps = {
   onCreate: (input: CreateTaskInput) => Promise<void>;
 };
 
+// Leere Startwerte zum Zurücksetzen des Formulars.
 const initialForm: CreateTaskInput = {
   title: "",
   description: "",
@@ -16,6 +17,7 @@ const initialForm: CreateTaskInput = {
   dueDate: "",
 };
 
+// Nimmt die Daten für eine neue Aufgabe entgegen.
 export default function CreateTaskForm({ onCreate }: CreateTaskFormProps) {
   const [form, setForm] = useState<CreateTaskInput>(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,6 +26,7 @@ export default function CreateTaskForm({ onCreate }: CreateTaskFormProps) {
     text: string;
   }>();
 
+  // Beim Absenden werden die Formulardaten an die übergeordnete Seite weitergegeben.
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsSubmitting(true);

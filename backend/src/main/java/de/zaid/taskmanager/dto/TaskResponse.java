@@ -4,6 +4,7 @@ import de.zaid.taskmanager.model.Priority;
 import de.zaid.taskmanager.model.TaskStatus;
 import java.time.LocalDate;
 
+// Legt fest, welche Aufgabendaten an das Frontend gesendet werden.
 public class TaskResponse {
     private final int id;
     private final String title;
@@ -12,6 +13,7 @@ public class TaskResponse {
     private final TaskStatus status;
     private final LocalDate dueDate;
 
+    // Baut die vollständige Antwort für eine Aufgabe auf.
     public TaskResponse(
             int id,
             String title,

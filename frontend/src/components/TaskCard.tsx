@@ -7,6 +7,7 @@ type TaskCardProps = {
   onDelete: (id: number) => Promise<void>;
 };
 
+// Zeigt eine einzelne Aufgabe mit ihren beiden Aktionen an.
 export default function TaskCard({
   task,
   isUpdating,
@@ -14,6 +15,7 @@ export default function TaskCard({
   onDelete,
 }: TaskCardProps) {
   const isCompleted = task.status === "COMPLETED";
+  // Das Datum aus der API wird für die deutsche Anzeige formatiert.
   const formattedDueDate = new Intl.DateTimeFormat("de-DE").format(
     new Date(`${task.dueDate}T00:00:00`),
   );

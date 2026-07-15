@@ -2,12 +2,14 @@ package de.zaid.taskmanager.dto;
 
 import java.time.LocalDateTime;
 
+// Beschreibt eine einheitliche Fehlerantwort der REST-API.
 public class ApiError {
     private final LocalDateTime timestamp;
     private final int status;
     private final String error;
     private final String message;
 
+    // Setzt alle Angaben, die das Frontend bei einem Fehler erhält.
     public ApiError(LocalDateTime timestamp, int status, String error, String message) {
         this.timestamp = timestamp;
         this.status = status;
